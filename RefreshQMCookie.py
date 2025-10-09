@@ -5,18 +5,29 @@ import requests
 from pathlib import Path
 import logging
 import os
+import sys
+
+isPackaged: bool = not sys.argv[0].endswith('.py')
 
 # 配置日志
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
+        # logging.FileHandler("D://inetpub//inf//meting//cookie_renew.log"),
         logging.StreamHandler()
     ]
 )
 
 # 配置文件路径
-BASE_DIR = Path(__file__).resolve().parent
+if isPackaged:
+    exe_path = Path(sys.argv[0]).resolve()
+    base_path = exe_path.parent
+    os.chdir(base_path)
+    BASE_DIR = base_path
+else:
+    BASE_DIR = Path(__file__).resolve().parent
+
 INDEX_PHP = BASE_DIR.parent / "index.php"
 COOKIE_PHP = BASE_DIR / "QMCookie.php"
 
@@ -241,7 +252,7 @@ def main():
     logging.info(f"---------------")
     logging.info(f"INDEX_PHP 路径: {INDEX_PHP}")
     logging.info(f"COOKIE_PHP 路径: {COOKIE_PHP}")
-    logging.info(f"当前工作目录: {os.getcwd()}")
+    logging.info(f"当前工作目录: {BASE_DIR}")
     logging.info(f"---------------")
     while True:
         try:
