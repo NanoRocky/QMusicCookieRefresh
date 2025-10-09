@@ -11,7 +11,6 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        # logging.FileHandler("D://inetpub//inf//meting//cookie_renew.log"),
         logging.StreamHandler()
     ]
 )
@@ -235,6 +234,10 @@ def main():
     logging.info(f" ")
     logging.info(f"---------------")
     logging.info(f"QQMusic Cookie 续签服务启动")
+    logging.info(f"")
+    logging.info(f"版本: 1.0.0")
+    logging.info(f"Made by NanoRocky")
+    logging.info(f"https://github.com/NanoRocky/QMusicCookieRefresh")
     logging.info(f"---------------")
     logging.info(f"INDEX_PHP 路径: {INDEX_PHP}")
     logging.info(f"COOKIE_PHP 路径: {COOKIE_PHP}")
